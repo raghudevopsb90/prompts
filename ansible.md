@@ -90,7 +90,7 @@ Every run, in this order:
 - **Config changes must apply:** services whose config you changed use `state: restarted`, not `started`, including nginx, mongod and valkey. Run `nginx -t` before restarting nginx.
 - **RabbitMQ order:** start the service, enable the plugin, restart, then create the user.
 - **One action per task:** a task has one module. Never repeat a module key inside a task.
-- **Modules:** use real modules (`dnf`, `template`, `file`, `unarchive`, `user`, `replace`, `systemd_service`) wherever they fit, and `shell` only for builds, the NodeSource setup script, the MySQL client, `rabbitmqctl` and `rabbitmq-plugins`. Repo files already set `gpgcheck=0`, so do not add `disable_gpg_check`.
+- **Modules:** use real modules (`dnf`, `template`, `file`, `unarchive`, `user`, `replace`, `systemd_service`) wherever they fit, and `shell` only for builds, the NodeSource setup script, the MySQL client, `rabbitmqctl` and `rabbitmq-plugins`. Repo files already set `gpgcheck=0`, so do not add `disable_gpg_check`. Do not use `command` module, Always use `shell` module.
 - **Nothing extra:** no vault, tags, handlers, `group_vars`, extra roles, extra packages, empty files, helper scripts or absolute paths from any machine. Do not install a package a component does not need.
 - **Style:** give every task a clear name, and quote any YAML value that starts with `{{`.
 
